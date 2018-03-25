@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <footer>
+    <footer style="display: none;">
 			<mt-tabbar v-model="selected">
 			  <mt-tab-item id="Index" @click="clickFn()">
 			    <img slot="icon" src="./images/icon01.jpg">
@@ -66,5 +66,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+html, body {
+	height: 100%;
 }
 </style>

@@ -2,17 +2,19 @@
 	<div>
 		<mt-search v-model="value" cancel-text="取消" placeholder="影视 图书 唱片 小组 舞台剧等"></mt-search>
 		<div class="box">
-			<div class="news" v-for='(news,index) in newslist' :key='index'>
-				<div class="left">
-					<h4>{{news.title}}</h4>
-					<h2>{{news.header}}</h2>
-					<p>{{news.content}}</p>
-					<span>{{news.from}}</span>
+			<mt-loadmore :top-method="loadTop" :auto-fill="false" ref="loadmore">
+			    <div class="news" v-for='(news,index) in newslist' :key='index'>
+					<div class="left">
+						<h4>{{news.title}}</h4>
+						<h2>{{news.header}}</h2>
+						<p>{{news.content}}</p>
+						<span>{{news.from}}</span>
+					</div>
+					<div class="right">
+						<img src="./images/pic01.jpg" />
+					</div>
 				</div>
-				<div class="right">
-					<img src="./images/pic01.jpg" />
-				</div>
-			</div>
+			</mt-loadmore>
 		</div>
 	</div>
 </template>
@@ -46,8 +48,24 @@
 				content: '兔子加持的智慧力量，人类绝不可小觑兔子加持的智慧力量，',
 				from:'雾港',
 			  }
-			]	
+			],
+			page: 1
 	  	}
+	  },
+	  beforeMount(){
+		  this.getJoke();
+	  },
+	  methods:{
+	 	getJoke() {
+	 		this.$http.get('/joke/content/list.php?key='+this.apikey+'&page='+this.page+'&pagesize=10&sort=asc&time=1418745237').then(data =>{
+				this.newslist = data.data.result.data;
+				this.page++;
+			})
+	 	},
+	  	loadTop() {
+	  		this.getJoke();
+		  	this.$refs.loadmore.onTopLoaded();
+		}
 	  }
 	}
 </script>
