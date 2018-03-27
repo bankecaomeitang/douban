@@ -35,10 +35,12 @@
 			}),
 		},
 		beforeMount(){
-			this.GET_JOKE();
+			this.GET_JOKE().then(data=>{
+				console.log(data);
+			});
 		},
 		methods:{
-			...mapMutations(['GET_JOKE']),
+			...mapActions(['GET_JOKE']),
 			loadTop() {
 		  		this.GET_JOKE();
 			  	this.$refs.loadmore.onTopLoaded();
@@ -59,6 +61,6 @@
 	.right img{display: block;width: 90%;padding: 2.8em 0 2em;}
 	.left h4{font-size: 14px;color: #2C3E50;font-weight: normal;padding-bottom: 0.5em;}
 	.left h2{font-weight: normal;font-size: 18px;line-height: 1.5em;padding-bottom: 0.3em;}
-	.left p{line-height: 1.7em;max-height: 3.4em;overflow: hidden;}
+	.left p{line-height: 1.7em;overflow: hidden;}
 	.left span{display: block;line-height: 2em;position: absolute;bottom: 0;}
 </style>

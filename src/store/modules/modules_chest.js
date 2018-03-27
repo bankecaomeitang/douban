@@ -8,14 +8,18 @@ export default{
 		page: 1
 	},
 	mutations:{
-		[TypesChest.GET_JOKE](ctx){
-			ctx.commit(TypesChest,SET_JOKE,{newslist:[...ctx.state.newslist,...data.data.result.data],page:ctx.commit.page++})
+		[TypesChest.SET_JOKE](state,query){
+			state.newslist=[...query.newslist,...state.newslist];
+			state.page++;
         }
 	},
 	actions:{
-		[TypesChest.SET_JOKE](ctx){ 			
-			Vue.prototype.$http.get('/joke/content/list.php?key='+ctx.commit.apikey+'&page='+ctx.commit.page+'&pagesize=10&sort=asc&time=1418745237');
-			ctx.commit(TypesChest,SET_JOKE,{newslist:[...ctx.state.newslist,...data.data.result.data],page:ctx.commit.page++})
+		[TypesChest.GET_JOKE](ctx){ 		
+			return Vue.prototype.$http.get('/joke/content/list.php?key='+ctx.state.apikey+'&page='+ctx.state.page+'&pagesize=10&sort=asc&time=1418745237').then(data=>{
+				console.log(2);
+				ctx.commit(TypesChest.SET_JOKE,{newslist:data.data.result.data});
+				return data;
+			});			
 		}
 	},
 	getters:{
