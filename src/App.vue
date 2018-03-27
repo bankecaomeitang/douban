@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <footer style="display: none;">
+    <router-view style="padding-bottom: 50px;"></router-view>
+    <footer>
 			<mt-tabbar v-model="selected">
 			  <mt-tab-item id="Index" @click="clickFn()">
 			    <img slot="icon" src="./images/icon01.jpg">
@@ -71,4 +71,5 @@ export default {
 html, body {
 	height: 100%;
 }
+.mint-tabbar{position: fixed;}
 </style>

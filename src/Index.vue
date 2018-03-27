@@ -20,53 +20,30 @@
 </template>
 
 <script>
+	import { mapState, mapMutations,mapActions } from 'vuex';
+	
 	export default {
 	  name: 'App',
 	  data(){
 	  	return{
-	  		value:'',
-	  		apikey:'2cdf3fd2b6df949d78b4926f4bee4417',
-	  		newslist: [
-			{
-				id: 1,
-				title: '今日热点',
-				header:'兔女郎趣史',
-				content: '兔子加持的智慧力量，人类绝不可小觑兔子加持的智慧力量，',
-				from:'雾港',
-			  },
-			  {
-				id: 2,
-				name: '今日热点',
-				header: '第二第二第二第二',
-				content: '兔子加持的智慧力量，人类绝不可小觑兔子加持的智慧力量，',
-				from:'豆瓣',
-			  },
-			  {
-				id: 3,
-				name: '今日热点',
-				header: '第三第三第三第三',
-				content: '兔子加持的智慧力量，人类绝不可小觑兔子加持的智慧力量，',
-				from:'雾港',
-			  }
-			],
-			page: 1
+	  		value:''
 	  	}
 	  },
-	  beforeMount(){
-		  this.getJoke();
-	  },
-	  methods:{
-	 	getJoke() {
-	 		this.$http.get('/joke/content/list.php?key='+this.apikey+'&page='+this.page+'&pagesize=10&sort=asc&time=1418745237').then(data =>{
-				this.newslist = data.data.result.data;
-				this.page++;
-			})
-	 	},
-	  	loadTop() {
-	  		this.getJoke();
-		  	this.$refs.loadmore.onTopLoaded();
+	  	computed: {
+			...mapState({
+				newslist: state => state.chest.newslist
+			}),
+		},
+		beforeMount(){
+			this.GET_JOKE();
+		},
+		methods:{
+			...mapMutations(['GET_JOKE']),
+			loadTop() {
+		  		this.GET_JOKE();
+			  	this.$refs.loadmore.onTopLoaded();
+			}
 		}
-	  }
 	}
 </script>
 

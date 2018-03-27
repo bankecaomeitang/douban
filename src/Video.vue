@@ -15,11 +15,10 @@
 		  <mt-tab-container-item id="1">
 		    <ul>
 				<li>
-					<!--<mt-cell title="今日推荐" value="全部12" is-link></mt-cell>-->
 					<mt-cell title="今日推荐" is-link><span>全部12</span></mt-cell>
 				</li>
 			</ul>
-			<mt-swipe :show-indicators="false" style="width: 100%;height: 100px;">
+			<mt-swipe :show-indicators="false" :auto='0' style="width: 100%;height: 100px;">
 			  <mt-swipe-item style="width: 90%;background: red;">1</mt-swipe-item>
 			  <mt-swipe-item style="width: 90%;background: blue;">2</mt-swipe-item>
 			  <mt-swipe-item style="width: 90%;background: green;">3</mt-swipe-item>

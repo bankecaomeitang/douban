@@ -5,7 +5,7 @@
 		</mt-header>
 		<div class="top">
 			<div class="left">
-				<img />
+				<!--<img />-->
 			</div>
 			<div class="right">
 				<p><a href="#">登录</a>/<a href="#">注册</a></p>
@@ -36,7 +36,9 @@
 	export default {
 	  name: 'App',
 	  data(){
-	  	
+	  	return{
+	  		
+	  	}
 	  }
 	}
 </script>
