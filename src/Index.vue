@@ -35,9 +35,7 @@
 			}),
 		},
 		beforeMount(){
-			this.GET_JOKE().then(data=>{
-				console.log(data);
-			});
+			this.GET_JOKE();
 		},
 		methods:{
 			...mapActions(['GET_JOKE']),

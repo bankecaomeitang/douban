@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1>小组</h1>
-		<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="false" ref="loadmore">
+		<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
 			<ul class="ul01">
 				<li v-for='(pic,index) in piclist' :key='index'>
 					<p>{{pic.content}}</p>
@@ -12,25 +12,27 @@
 	</div>
 </template>
 
-<script>
+<script scoped>
+import { mapState, mapMutations,mapActions } from 'vuex';
+
 export default{
 	data(){
 		return{
-			piclist:[],
-			key:'2cdf3fd2b6df949d78b4926f4bee4417',
-			page:1
+			allLoaded: false,
 		}
 	},
 	beforeMount(){
-		this.getdata();
+		this.GET_PIC();
+	},
+	computed:{
+		...mapState({
+				piclist: state => state.chest.piclist
+			})
 	},
 	methods:{
-		getdata(){
-			this.$http.get('/joke/img/list.php?key=+'+this.key+'&page='+this.page+'&pagesize=10&sort=asc&time=1418745237').then(data=>{this.piclist = [...data.data.result.data,...this.piclist];this.page++}		
-		)},
+		...mapActions(['GET_PIC']),
 		loadBottom(){
-			this.getdata();
-			this.allLoaded = true;
+			this.GET_PIC();
 			this.$refs.loadmore.onBottomLoaded();
 		}
 	}
