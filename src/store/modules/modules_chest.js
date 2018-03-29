@@ -21,13 +21,17 @@ export default{
 	},
 	actions:{
 		[TypesChest.GET_JOKE](ctx){ 		
-			Vue.prototype.$http.get('/joke/content/list.php?key='+ctx.state.apikey+'&page='+ctx.state.joke_page+'&pagesize=10&sort=asc&time=1418745237').then(data=>{
-				ctx.commit(TypesChest.SET_JOKE,{newslist:data.data.result.data})
+			return Vue.prototype.$http.get('/joke/content/list.php?key='+ctx.state.apikey+'&page='+ctx.state.joke_page+'&pagesize=10&sort=asc&time=1418745237').then(data=>{
+				if(data.data.error_code==0){
+					ctx.commit(TypesChest.SET_JOKE,{newslist:data.data.result.data});
+				}				
 			})			
 		},
 		[TypesChest.GET_PIC](ctx){ 		
-			Vue.prototype.$http.get('/joke/img/list.php?key='+ctx.state.apikey+'&page='+ctx.state.pic_page+'&pagesize=10&sort=asc&time=1418745237').then(data=>{
-				ctx.commit(TypesChest.SET_PIC,{piclist:data.data.result.data})
+			return Vue.prototype.$http.get('/joke/img/list.php?key='+ctx.state.apikey+'&page='+ctx.state.pic_page+'&pagesize=10&sort=asc&time=1418745237').then(data=>{
+				if(data.data.error_code==0){
+					ctx.commit(TypesChest.SET_PIC,{piclist:data.data.result.data});
+				}				
 			})			
 		}
 	},
