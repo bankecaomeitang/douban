@@ -5,7 +5,7 @@
 			<ul class="ul01">
 				<li v-for='(pic,index) in piclist' :key='index'>
 					<p>{{pic.content}}</p>
-					<img :src="pic.url"/>
+					<img :src="pic.url"/><button @click="STROE_PIC(index)">收藏</button>
 				</li>
 			</ul>
 		</mt-loadmore>		
@@ -26,11 +26,13 @@ export default{
 	},
 	computed:{
 		...mapState({
-				piclist: state => state.chest.piclist
+				piclist: state => state.chest.piclist,
+				pics: state => state.chest.pics
 			})
 	},
 	methods:{
 		...mapActions(['GET_PIC']),
+		...mapMutations(['STROE_PIC']),
 		loadBottom(){
 			this.GET_PIC();
 			this.$refs.loadmore.onBottomLoaded();

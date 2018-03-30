@@ -7,7 +7,8 @@ export default{
 		newslist: [],
 		piclist:[],
 		joke_page: 1,
-		pic_page:1
+		pic_page:1,
+		pics:[]
 	},
 	mutations:{
 		[TypesChest.SET_JOKE](state,query){
@@ -17,7 +18,13 @@ export default{
 		[TypesChest.SET_PIC](state,query){
 			state.piclist=[...state.piclist,...query.piclist];
 			state.pic_page++
-        }
+		},
+		[TypesChest.STROE_PIC](state,index){
+			state.pics=[...state.pics,state.piclist[index]];
+		},
+		[TypesChest.DEL_PIC](state,index){
+			state.pics.splice(index,1);
+		}
 	},
 	actions:{
 		[TypesChest.GET_JOKE](ctx){ 		

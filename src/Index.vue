@@ -2,16 +2,15 @@
 	<div>
 		<mt-search v-model="value" cancel-text="取消" placeholder="影视 图书 唱片 小组 舞台剧等"></mt-search>
 		<div class="box">
-			<mt-loadmore :top-method="loadTop" :auto-fill="false" ref="loadmore">
+			<mt-loadmore :top-method="loadTop" ref="loadmore">
 			    <div class="news" v-for='(news,index) in newslist' :key='index'>
-					<div class="left">
-						<h4>{{news.title}}</h4>
-						<h2>{{news.header}}</h2>
+					<div class="left">						
 						<p>{{news.content}}</p>
-						<span>{{news.from}}</span>
+						<h5>{{news.updatetime}}</h5>						
 					</div>
 					<div class="right">
 						<img src="./images/pic01.jpg" />
+						<button>收藏</button>
 					</div>
 				</div>
 			</mt-loadmore>
@@ -57,8 +56,6 @@
 	.news .left{flex: 3;padding: 1em;font-size: 14px;position: relative;}
 	.news .right{width: 245px;overflow: hidden;flex: 1;}
 	.right img{display: block;width: 90%;padding: 2.8em 0 2em;}
-	.left h4{font-size: 14px;color: #2C3E50;font-weight: normal;padding-bottom: 0.5em;}
-	.left h2{font-weight: normal;font-size: 18px;line-height: 1.5em;padding-bottom: 0.3em;}
 	.left p{line-height: 1.7em;overflow: hidden;}
-	.left span{display: block;line-height: 2em;position: absolute;bottom: 0;}
+	.right button{display: block;margin: 0 auto 10px;}
 </style>
