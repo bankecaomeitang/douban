@@ -8,7 +8,8 @@ export default{
 		piclist:[],
 		joke_page: 1,
 		pic_page:1,
-		pics:[]
+		pics:[],
+		isShouCang:[]
 	},
 	mutations:{
 		[TypesChest.SET_JOKE](state,query){
@@ -20,10 +21,26 @@ export default{
 			state.pic_page++
 		},
 		[TypesChest.STROE_PIC](state,index){
-			state.pics=[...state.pics,state.piclist[index]];
+			
+
+			if(state.isShouCang[index]){
+				const i = state.pics.indexOf(state.piclist[index]);
+				state.pics.splice(i,1);
+				state.isShouCang[index] = false	;
+				// for(let i=0;i<state.pics.length;i++){
+				// 	if(state.pics[i].url==state.piclist[index].url){
+				// 		state.pics.splice(i,1);
+				// 		state.isShouCang[index] = false	;
+				// 	}					
+				// }						
+			}else{
+				state.pics=[...state.pics,state.piclist[index]];
+				state.isShouCang[index] = true;
+			}			
 		},
 		[TypesChest.DEL_PIC](state,index){
 			state.pics.splice(index,1);
+			state.isShouCang[index] = false	;
 		}
 	},
 	actions:{
