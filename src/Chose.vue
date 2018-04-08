@@ -29,13 +29,13 @@ export default {
             },{
                 grade:'二年级',
                 classObject:{
-                    active: true,
+                    active: false,
                     noActive:true
                 }
             },{
                 grade:'三年级',
                 classObject:{
-                    active: true,
+                    active: false,
                     noActive:true
                 }
             }
@@ -44,20 +44,19 @@ export default {
     },
   methods:{
      chosen(index){
-         if(this.gradelist[index].classObject.active){
-             this.gradelist[index].classObject.active = false;
+         if(this.gradelist[index].classObject.active==false&&this.gradelist[index].classObject.noActive){    
+             this.gradelist[index].classObject.active=false;
+             this.gradelist[index].classObject.noActive = true;      
+             this.gradelist[index].classObject.active=true;
+             this.gradelist[index].classObject.noActive = false;
              console.log(0)
          }else{
              this.gradelist[index].classObject.active=true;
+             this.gradelist[index].classObject.noActive = false; 
+             this.gradelist[index].classObject.active=false;
+             this.gradelist[index].classObject.noActive = true;
              console.log(1)
          };
-         if(this.gradelist[index].classObject.noActive){
-             this.gradelist[index].classObject.noActive = false;
-             console.log(2)
-         }else{
-             this.gradelist[index].classObject.active=true;
-             console.log(3)
-         }
         
      }
      
