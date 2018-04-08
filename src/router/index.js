@@ -8,6 +8,7 @@ import Video from '@/Video'
 import Guangbo from '@/Guangbo'
 import Xiaozu from '@/Xiaozu'
 import My from '@/My'
+import Chose from '@/Chose'
 
 Vue.use(Router)
 
@@ -45,6 +46,10 @@ export default new Router({
       path: '/My',
       name: 'My',
       component: My
+    },{
+      path: '/Chose',
+      name: 'Chose',
+      component: Chose
     }
   ]
 })
